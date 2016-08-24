@@ -63,35 +63,11 @@
             let i;
             for (i = 0; i < 500; i++){
                 $("#BoxHolder").append("<li><div id='" + i + "box' class='boxes'></div></li>")
-                let numColor = Math.floor((Math.random() * 5) + 1)
+                let numColor = Math.floor((Math.random() * 5))
                 console.log(numColor)
                 let color;
-                switch (numColor) {
-                    case 1:
-                        console.log("Red")
-                        color = "red"
-                        break
-                    case 2:
-                        console.log("Blue")
-                        color = "blue"
-                        break
-                    case 3:
-                        console.log("Green")
-                        color = "green"
-                        break
-                    case 4:
-                        console.log("Yellow")
-                        color = "yellow"
-                        break
-                    case 5:
-                        console.log("Brown")
-                        color = "brown"
-                        break
-                    default:
-                        console.log("default")
-                        color = "blue"
-                }
-                $(`#${i}box`).css("background-color", color)
+                let colors = ['red', 'blue', 'green', 'yellow', 'brown'];
+                $(`#${i}box`).css("background-color", colors[numColor])
             }
         }
         </script>
