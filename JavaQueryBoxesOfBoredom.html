@@ -5,163 +5,67 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
         $(document).ready(function() {
-			currentbrush = "rand"
-            lastBox = "nil"
+	'use strict';
+	    let currentbrush = "rand"
+            let lastBox;
             boxes()
-             $("#newBoxes").click(function() {
-            boxes()
-        })
+             $("#newBoxes").click(boxes());
              $(".boxes").hover(function() {
-                 if (lastBox == event.target.id){
-                     
-                 }else{
-                 switch (currentbrush){
-                     case "rand":
-                        lastBox = event.target.id
-                        numColor = Math.floor((Math.random() * 4) + 1)
-                        console.log(numColor)
-                        color = "nil"
-                        switch (numColor) {
-                            case 1:
-                                console.log("Red")
-                                color = "red"
-                                break
-                            case 2:
-                                console.log("Blue")
-                                color = "blue"
-                                break
-                            case 3:
-                                console.log("Green")
-                                color = "green"
-                                break
-                            case 4:
-                                console.log("Yellow")
-                                color = "yellow"
-                                break
-                            default:
-                                console.log("default")
-                                color = "blue"
-                        }
-                        break
-                     case "red":
-                         color = "red"
-                         break
-                     case "blue":
-                         color = "blue"
-                         break
-                     case "green":
-                         color = "green"
-                         break
-                     case "yellow":
-                         color = "yellow"
-                         break
+             	let color;
+                 if (lastBox != event.target.id){
+                    if(currentBrush == 'rand'){
+                    	lastBox = event.target.id
+                         numColor = Math.floor((Math.random() * 4) + 1)
+                         console.log(numColor)
+                         let colors = ['red', 'blue', 'green', 'yellow', 'blue'];
+                         color = colors[numColor];
+                    }else{
+                    	color = currentBrush;
                     }
                 }
                 $("#" + event.target.id).css("background-color", color)
              })
              $(".brushes").click(function(){
-                 switch (event.target.id) {
-                     case "red":
-                         colorRedBtn()
-						 currentbrush = "red"
-                         break
-                     case "blue":
-                         colorBlueBtn()
-						 currentbrush = "blue"
-                         break
-                     case "green":
-                         colorGreenBtn()
-						 currentbrush = "green"
-                         break
-                     case "yellow":
-                         colorYellowBtn()
-						 currentbrush = "yellow"
-                         break
-                     case "rand":
-                         selectRand()
-						 currentbrush = "rand"
-                         break
-                    default:
-                        console.log("errrrrrrrrr")
-                 }
-             })
+             	let color = event.target.id;
+             	currentBrush = 'color';
+             	colorBtn(color);
+             });
         });
-        function colorRedBtn() {
-            console.log("color Red")
-            $("#red").css("background-color", "black")
-            $("#red").css("color", "white")
-            
-            $("#blue").css("background-color", "blue")
-            $("#blue").css("color", "black")
-            $("#green").css("background-color", "green")
-            $("#green").css("color", "black")
-            $("#yellow").css("background-color", "yellow")
-            $("#yellow").css("color", "black")
-            $("#rand").css("background-color", "brown")
-            $("#rand").css("color", "black")
+        let colorBtn = function(color){
+ 	   console.log(`Color ${color} has been chosen`);
+           let colors = ['red', 'blue', 'green', 'yellow', 'rand'];
+           let otherColors;
+           
+           for (i = 0; i < colors.length; i++) { 
+    	      if(colors[i] != color) otherColors.push(colors[i]);
+	   }
+	   
+	   $(`#${color}`).css({
+	   	backgroundColor: 'black',
+	   	color: 'white'
+	   });
+	   
+	   for(i = 0; i < otherColors.length; i++){
+	   	if(otherColors[i] == 'rand'){
+   		   $('#rand').css{
+   		   	backgroundColor: 'brown',
+   		   	color: 'brown'
+   		   }
+	   	}else{
+   		   $(`#${otherColors[i}`).css({
+   		   	backgroundColor: otherColors[i],
+   		   	color: otherColors[i]
+   		   })
+	   	}
+	   }
+           
         }
-        function colorBlueBtn() {
-            console.log("color Blue")
-            $("#blue").css("background-color", "black")
-            $("#blue").css("color", "white")
-            
-            $("#red").css("background-color", "red")
-            $("#red").css("color", "black")
-            $("#green").css("background-color", "green")
-            $("#green").css("color", "black")
-            $("#yellow").css("background-color", "yellow")
-            $("#yellow").css("color", "black")
-            $("#rand").css("background-color", "brown")
-            $("#rand").css("color", "black")
-        }
-        function colorGreenBtn() {
-            console.log("color Green")
-            $("#green").css("background-color", "black")
-            $("#green").css("color", "white")
-            
-            $("#blue").css("background-color", "blue")
-            $("#blue").css("color", "black")
-            $("#red").css("background-color", "red")
-            $("#red").css("color", "black")
-            $("#yellow").css("background-color", "yellow")
-            $("#yellow").css("color", "black")
-            $("#rand").css("background-color", "brown")
-            $("#rand").css("color", "black")
-        }
-        function colorYellowBtn() {
-            console.log("color Yellow")
-            $("#yellow").css("background-color", "black")
-            $("#yellow").css("color", "white")
-            
-            $("#blue").css("background-color", "blue")
-            $("#blue").css("color", "black")
-            $("#green").css("background-color", "green")
-            $("#green").css("color", "black")
-            $("#red").css("background-color", "red")
-            $("#red").css("color", "black")
-            $("#rand").css("background-color", "brown")
-            $("#rand").css("color", "black")
-        }
-        function selectRand() {
-            console.log("color Rand Black")
-            $("#rand").css("background-color", "black")
-            $("#rand").css("color", "white")
-            
-            $("#blue").css("background-color", "blue")
-            $("#blue").css("color", "black")
-            $("#green").css("background-color", "green")
-            $("#green").css("color", "black")
-            $("#yellow").css("background-color", "yellow")
-            $("#yellow").css("color", "black")
-            $("#red").css("background-color", "red")
-            $("#red").css("color", "black")
-        }
-        function boxes() {
+        let boxes = function() {
             for (i = 0; i < 500; i++){
                 $("#BoxHolder").append("<li><div id='" + i + "box' class='boxes'></div></li>")
                 numColor = Math.floor((Math.random() * 4) + 1)
                 console.log(numColor)
-                color = "nil"
+                let color;
                 switch (numColor) {
                     case 1:
                         console.log("Red")
@@ -184,7 +88,7 @@
                         color = "blue"
                     
                 }
-                $("#" + i + "box").css("background-color", color)
+                $(`#${i}box`).css("background-color", color)
             }
         }
         </script>
