@@ -4,11 +4,12 @@
         <title>JavaQueryBoxesOfBoredom</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
-        $(document).ready(function() {
-	'use strict';
-	    let currentbrush = "rand"
+    "use strict";
+    $(document).ready(function() {
+	    let currentBrush = "rand";
             let lastBox;
-            boxes()
+            let numColor;
+            boxes();
              $("#newBoxes").click(boxes());
              $(".boxes").hover(function() {
              	let color;
@@ -30,40 +31,44 @@
              	currentBrush = 'color';
              	colorBtn(color);
              });
+             let colorBtn = function(color){
+      	         console.log(`Color ${color} has been chosen`);
+                let colors = ['red', 'blue', 'green', 'yellow', 'rand'];
+                let otherColors = [];
+
+                currentBrush = color;
+
+                let i;
+                for (i = 0; i < colors.length; i++) {
+         	      if(colors[i] != color) otherColors.push(colors[i]);
+     	         }
+
+           	   $(`#${color}`).css({
+           	   	backgroundColor: 'black',
+           	   	color: 'white'
+           	   });
+
+           	   for(i = 0; i < otherColors.length; i++){
+             	   	if(otherColors[i] == 'rand'){
+                		   $('#rand').css({
+                		   	backgroundColor: 'brown',
+                		   	color: 'brown'
+                     });
+             	   	}else{
+                       console.log(otherColors[i]);
+                  		   $(`#${otherColors[i]}`).css({
+                  		   	   backgroundColor: otherColors[i],
+                		   	     color: otherColors[i]
+                  		   })
+                	  }
+           	   }
+             }
         });
-        let colorBtn = function(color){
- 	   console.log(`Color ${color} has been chosen`);
-           let colors = ['red', 'blue', 'green', 'yellow', 'rand'];
-           let otherColors;
-           
-           for (i = 0; i < colors.length; i++) { 
-    	      if(colors[i] != color) otherColors.push(colors[i]);
-	   }
-	   
-	   $(`#${color}`).css({
-	   	backgroundColor: 'black',
-	   	color: 'white'
-	   });
-	   
-	   for(i = 0; i < otherColors.length; i++){
-	   	if(otherColors[i] == 'rand'){
-   		   $('#rand').css{
-   		   	backgroundColor: 'brown',
-   		   	color: 'brown'
-   		   }
-	   	}else{
-   		   $(`#${otherColors[i}`).css({
-   		   	backgroundColor: otherColors[i],
-   		   	color: otherColors[i]
-   		   })
-	   	}
-	   }
-           
-        }
         let boxes = function() {
+            let i;
             for (i = 0; i < 500; i++){
                 $("#BoxHolder").append("<li><div id='" + i + "box' class='boxes'></div></li>")
-                numColor = Math.floor((Math.random() * 4) + 1)
+                let numColor = Math.floor((Math.random() * 4) + 1)
                 console.log(numColor)
                 let color;
                 switch (numColor) {
@@ -86,7 +91,7 @@
                     default:
                         console.log("default")
                         color = "blue"
-                    
+
                 }
                 $(`#${i}box`).css("background-color", color)
             }
@@ -113,7 +118,7 @@
                 width: 50px;
                 height: 50px;
                 display: flex;
-                
+
             }
             #BoxJar {
                 /*display: flex;*/
