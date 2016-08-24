@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+    <head>
+        <title>JavaQueryBoxesOfBoredom</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+        $(document).ready(function() {
+			currentbrush = "rand"
+            lastBox = "nil"
+            boxes()
+             $("#newBoxes").click(function() {
+            boxes()
+        })
+             $(".boxes").hover(function() {
+                 if (lastBox == event.target.id){
+                     
+                 }else{
+                 switch (currentbrush){
+                     case "rand":
+                        lastBox = event.target.id
+                        numColor = Math.floor((Math.random() * 4) + 1)
+                        console.log(numColor)
+                        color = "nil"
+                        switch (numColor) {
+                            case 1:
+                                console.log("Red")
+                                color = "red"
+                                break
+                            case 2:
+                                console.log("Blue")
+                                color = "blue"
+                                break
+                            case 3:
+                                console.log("Green")
+                                color = "green"
+                                break
+                            case 4:
+                                console.log("Yellow")
+                                color = "yellow"
+                                break
+                            default:
+                                console.log("default")
+                                color = "blue"
+                        }
+                        break
+                     case "red":
+                         color = "red"
+                         break
+                     case "blue":
+                         color = "blue"
+                         break
+                     case "green":
+                         color = "green"
+                         break
+                     case "yellow":
+                         color = "yellow"
+                         break
+                    }
+                }
+                $("#" + event.target.id).css("background-color", color)
+             })
+             $(".brushes").click(function(){
+                 switch (event.target.id) {
+                     case "red":
+                         colorRedBtn()
+						 currentbrush = "red"
+                         break
+                     case "blue":
+                         colorBlueBtn()
+						 currentbrush = "blue"
+                         break
+                     case "green":
+                         colorGreenBtn()
+						 currentbrush = "green"
+                         break
+                     case "yellow":
+                         colorYellowBtn()
+						 currentbrush = "yellow"
+                         break
+                     case "rand":
+                         selectRand()
+						 currentbrush = "rand"
+                         break
+                    default:
+                        console.log("errrrrrrrrr")
+                 }
+             })
+        });
+        function colorRedBtn() {
+            console.log("color Red")
+            $("#red").css("background-color", "black")
+            $("#red").css("color", "white")
+            
+            $("#blue").css("background-color", "blue")
+            $("#blue").css("color", "black")
+            $("#green").css("background-color", "green")
+            $("#green").css("color", "black")
+            $("#yellow").css("background-color", "yellow")
+            $("#yellow").css("color", "black")
+            $("#rand").css("background-color", "brown")
+            $("#rand").css("color", "black")
+        }
+        function colorBlueBtn() {
+            console.log("color Blue")
+            $("#blue").css("background-color", "black")
+            $("#blue").css("color", "white")
+            
+            $("#red").css("background-color", "red")
+            $("#red").css("color", "black")
+            $("#green").css("background-color", "green")
+            $("#green").css("color", "black")
+            $("#yellow").css("background-color", "yellow")
+            $("#yellow").css("color", "black")
+            $("#rand").css("background-color", "brown")
+            $("#rand").css("color", "black")
+        }
+        function colorGreenBtn() {
+            console.log("color Green")
+            $("#green").css("background-color", "black")
+            $("#green").css("color", "white")
+            
+            $("#blue").css("background-color", "blue")
+            $("#blue").css("color", "black")
+            $("#red").css("background-color", "red")
+            $("#red").css("color", "black")
+            $("#yellow").css("background-color", "yellow")
+            $("#yellow").css("color", "black")
+            $("#rand").css("background-color", "brown")
+            $("#rand").css("color", "black")
+        }
+        function colorYellowBtn() {
+            console.log("color Yellow")
+            $("#yellow").css("background-color", "black")
+            $("#yellow").css("color", "white")
+            
+            $("#blue").css("background-color", "blue")
+            $("#blue").css("color", "black")
+            $("#green").css("background-color", "green")
+            $("#green").css("color", "black")
+            $("#red").css("background-color", "red")
+            $("#red").css("color", "black")
+            $("#rand").css("background-color", "brown")
+            $("#rand").css("color", "black")
+        }
+        function selectRand() {
+            console.log("color Rand Black")
+            $("#rand").css("background-color", "black")
+            $("#rand").css("color", "white")
+            
+            $("#blue").css("background-color", "blue")
+            $("#blue").css("color", "black")
+            $("#green").css("background-color", "green")
+            $("#green").css("color", "black")
+            $("#yellow").css("background-color", "yellow")
+            $("#yellow").css("color", "black")
+            $("#red").css("background-color", "red")
+            $("#red").css("color", "black")
+        }
+        function boxes() {
+            for (i = 0; i < 500; i++){
+                $("#BoxHolder").append("<li><div id='" + i + "box' class='boxes'></div></li>")
+                numColor = Math.floor((Math.random() * 4) + 1)
+                console.log(numColor)
+                color = "nil"
+                switch (numColor) {
+                    case 1:
+                        console.log("Red")
+                        color = "red"
+                        break
+                    case 2:
+                        console.log("Blue")
+                        color = "blue"
+                        break
+                    case 3:
+                        console.log("Green")
+                        color = "green"
+                        break
+                    case 4:
+                        console.log("Yellow")
+                        color = "yellow"
+                        break
+                    default:
+                        console.log("default")
+                        color = "blue"
+                    
+                }
+                $("#" + i + "box").css("background-color", color)
+            }
+        }
+        </script>
+        <style>
+            body {
+                margin: 0;
+            }
+            h1 {
+                margin: 0;
+            }
+           h3 {
+               margin: 5px;
+           }
+            #header {
+                width:100%;
+                background-color:cyan;
+                padding: 5px;
+            }
+            .boxes {
+                float:left;
+                margin: 10px;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                
+            }
+            #BoxJar {
+                /*display: flex;*/
+                /*align-items: center;*/
+                width:100%;
+            }
+            #BoxHolder {
+                /*display: block;*/
+                display: inline;
+                list-style-type: none;
+                width:100%;
+            }
+            #newBoxes {
+                padding: 5px;
+                float: right;
+                text-align: center;
+                width: 180px;
+                height: 30px;
+                background-color: bisque;
+            }
+            #links {
+               display: flex;
+               list-style-type: none;
+               align-items: center;
+               justify-content: center;
+            }
+            .brushes {
+                width: 180px;
+                height: 30px;
+                margin: 5px;
+                padding:3px;
+                text-align:center;
+            }
+            #red {
+                background-color:red;
+            }
+            #blue {
+                background-color:blue;
+            }
+            #green {
+                background-color:green;
+            }
+            #yellow {
+                background-color:yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <div id="newBoxes">Create New Boxes</div>
+            <h1>JavaQueryBoxesOfBoredom</h1>
+            <h3>Makes 500 boxes and styles them different colors</h3>
+            <ul id="links">
+                <li class="brushItems"><div id="red" class="brushes">Red</div></li>
+                <li class="brushItems"><div id="blue" class="brushes">Blue</div></li>
+                <li class="brushItems"><div id="green" class="brushes">Green</div></li>
+                <li class="brushItems"><div id="yellow" class="brushes">Yellow</div></li>
+                <li class="brushItems"><div id="rand" class="brushes">Random</div></li>
+            </ul>
+        </div>
+        <div id="BoxJar">
+            <ul id="BoxHolder">
+            </ul>
+        </div>
+    </body>
+</html>
